@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover the NASA hardware that still tells stories across the Moon, Mars, and deep space.">
+  <title>Echoes of Space — The machines that stayed behind</title>
+  <link rel="preconnect" href="https://images-api.nasa.gov">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #101A1B;
+  --forest: #244442;
+  --mint: #75B7A5;
+  --sand: #D49B62;
+  --blue: #5B9BD5;
+  --page: #101A1B;
+  --surface: #172524;
+  --surface-2: #1D302E;
+  --text: #F1F4EF;
+  --muted: #B0C0B9;
+  --line: rgba(117,183,165,.22);
+  --header: rgba(16,26,27,.82);
+  --shadow: 0 20px 60px rgba(0,0,0,.22);
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  --page: #F3F4EE;
+  --surface: #FFFFFF;
+  --surface-2: #E5EEE8;
+  --text: #101A1B;
+  --muted: #4F6660;
+  --line: rgba(36,68,66,.2);
+  --header: rgba(243,244,238,.88);
+  --shadow: 0 20px 50px rgba(16,26,27,.09);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--page); color: var(--text); font-family: 'Manrope', sans-serif; line-height: 1.65; transition: background .25s, color .25s; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--sand); outline-offset: 4px; }
+.skip-link { position: absolute; top: -100px; left: 1rem; z-index: 100; background: var(--sand); color: var(--ink); padding: .7rem 1rem; }
+.skip-link:focus { top: 1rem; }
+.site-header { height: 78px; padding: 0 6.2%; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: sticky; top: 0; z-index: 20; background: var(--header); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; align-items: center; gap: .65rem; font-size: .83rem; font-weight: 800; letter-spacing: .12em; white-space: nowrap; }
+.brand-mark { color: var(--sand); font-size: 1.35rem; }
+.brand-light { color: var(--mint); font-weight: 500; }
+.main-nav { display: flex; gap: clamp(1rem, 3vw, 2.8rem); font-size: .8rem; color: var(--muted); }
+.main-nav a:hover, .site-footer a:hover { color: var(--mint); }
+.theme-toggle { display: flex; align-items: center; gap: .5rem; color: var(--text); background: transparent; border: 1px solid var(--line); padding: .6rem .85rem; border-radius: 99px; cursor: pointer; font-size: .75rem; white-space: nowrap; }
+.theme-toggle span:first-child { color: var(--sand); font-size: 1.1rem; }
+.hero { min-height: min(800px, calc(100vh - 78px)); position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: center; padding: 7rem 10% 8rem; overflow: hidden; background: var(--ink); }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background-image: linear-gradient(90deg, rgba(16,26,27,.93) 0%, rgba(16,26,27,.72) 43%, rgba(16,26,27,.16) 100%), linear-gradient(0deg, rgba(16,26,27,.76), transparent 45%), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2400&q=90'); background-size: cover; background-position: center 48%; transform: scale(1.015); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .45; background: radial-gradient(ellipse at 72% 32%, rgba(117,183,165,.18), transparent 34%), linear-gradient(120deg, transparent 40%, rgba(212,155,98,.06)); pointer-events: none; }
+.hero-content { max-width: 800px; }
+.eyebrow, .section-kicker, .card-topline, .hero-caption, .hero-note, .card-tag, .api-status, .source-note { font-family: 'DM Mono', monospace; font-size: .68rem; letter-spacing: .14em; }
+.eyebrow { color: var(--mint); text-transform: uppercase; display: flex; align-items: center; gap: .7rem; margin: 0 0 1.25rem; }
+.eyebrow-line { display: inline-block; width: 30px; height: 1px; background: var(--sand); }
+.hero h1 { margin: 0; font-size: clamp(3.4rem, 8vw, 7.4rem); line-height: .99; letter-spacing: -.075em; font-weight: 800; max-width: 900px; }
+.gradient-text { background: linear-gradient(105deg, var(--mint) 0%, #B7D6C7 38%, var(--sand) 82%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.hero-copy { color: #D2DDD7; max-width: 570px; font-size: clamp(.95rem, 1.4vw, 1.12rem); margin: 1.8rem 0 2rem; }
+.hero-actions { display: flex; align-items: center; gap: 1.7rem; flex-wrap: wrap; }
+.button { border: 0; border-radius: 3px; display: inline-flex; justify-content: center; align-items: center; gap: 1rem; padding: .95rem 1.25rem; font-size: .82rem; font-weight: 800; cursor: pointer; transition: transform .2s, filter .2s; }
+.button:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.button-primary { color: var(--ink); background: var(--mint); }
+.button-primary span { color: var(--forest); font-size: 1.1rem; }
+.text-link { color: var(--text); font-size: .8rem; border-bottom: 1px solid var(--sand); padding: .4rem 0; }
+.text-link span { color: var(--sand); padding-left: .4rem; }
+.hero-note { color: #B8C9C1; margin-top: 4rem; font-size: .62rem; }
+.status-dot { display: inline-block; width: 7px; height: 7px; background: var(--mint); border-radius: 50%; margin-right: .6rem; box-shadow: 0 0 12px var(--mint); }
+.hero-caption { position: absolute; bottom: 1.8rem; left: 6.2%; right: 6.2%; display: flex; justify-content: space-between; color: #B9C7C0; font-size: .6rem; }
+.section-wrap { width: min(1200px, 86%); margin: 0 auto; }
+.intro { padding-top: 6rem; padding-bottom: 6rem; }
+.section-kicker { color: var(--mint); border-bottom: 1px solid var(--line); padding-bottom: 1rem; display: flex; justify-content: space-between; }
+.section-kicker span { color: var(--muted); }
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10%; padding-top: 2rem; }
+.intro h2, .section-heading h2, .why-copy h2, .closing-cta h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.07; letter-spacing: -.06em; margin: 0; }
+.intro-copy { color: var(--muted); font-size: .96rem; max-width: 550px; }
+.intro-copy p:first-child { margin-top: 0; }
+.missions { padding: 1rem 0 7rem; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.2rem; }
+.section-heading .eyebrow { margin-bottom: .8rem; }
+.heading-side-note { margin: 0 0 .4rem; color: var(--muted); font-size: .78rem; }
+.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.mission-card { background: var(--surface); border: 1px solid var(--line); min-width: 0; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+.mission-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.card-image { height: 220px; background-size: cover; background-position: center; position: relative; }
+.card-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--surface), transparent 52%); }
+.image-moon { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80'); }
+.image-mars { background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=900&q=80'); }
+.image-deep { background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80'); }
+.card-topline { position: absolute; margin: 1rem; z-index: 1; left: 0; right: 0; display: flex; justify-content: space-between; color: #E6EEE8; font-size: .6rem; }
+.card-symbol { color: var(--sand); font-size: 1.25rem; }
+.card-body { padding: 0 1.4rem 1.5rem; margin-top: -1.4rem; position: relative; z-index: 2; }
+.card-tag { color: var(--sand); font-size: .62rem; margin: 0 0 .55rem; }
+.card-body h3 { font-size: 1.35rem; line-height: 1.25; margin: 0 0 .8rem; letter-spacing: -.035em; }
+.card-body > p:not(.card-tag) { color: var(--muted); font-size: .83rem; min-height: 6.2rem; }
+.story-link { background: none; border: 0; padding: .7rem 0 0; color: var(--mint); font-size: .8rem; font-weight: 800; cursor: pointer; }
+.story-link span { color: var(--sand); margin-left: .4rem; }
+.why-section { background: var(--forest); color: #F1F4EF; overflow: hidden; }
+.why-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: 8%; align-items: center; padding-top: 7rem; padding-bottom: 7rem; }
+.why-visual { min-height: 420px; position: relative; display: grid; place-items: center; }
+.planet { width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle at 32% 25%, #D49B62, #8B5E42 42%, #244442 75%); box-shadow: inset -22px -15px 35px rgba(0,0,0,.42), 0 0 80px rgba(117,183,165,.12); }
+.orbit { border: 1px solid rgba(117,183,165,.45); border-radius: 50%; position: absolute; width: 340px; height: 140px; transform: rotate(-27deg); }
+.orbit-two { width: 390px; height: 210px; transform: rotate(36deg); border-color: rgba(212,155,98,.45); }
+.orbit-label { position: absolute; font-family: 'DM Mono', monospace; font-size: .58rem; letter-spacing: .15em; color: #BFD9CF; }
+.label-one { top: 17%; left: 10%; }.label-two { bottom: 17%; right: 5%; color: var(--sand); }
+.why-copy .eyebrow { color: var(--sand); }
+.why-copy h2 { margin-bottom: 1.1rem; }
+.why-lead { font-size: 1.08rem; max-width: 600px; color: #D8E4DD; margin-bottom: 2rem; }
+.why-points { border-top: 1px solid rgba(255,255,255,.19); }
+.why-point { display: grid; grid-template-columns: 45px 1fr; gap: .8rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,.19); }
+.point-number { color: var(--sand); font-family: 'DM Mono', monospace; font-size: .75rem; padding-top: .2rem; }
+.why-point h3 { font-size: .98rem; margin: 0 0 .35rem; }
+.why-point p { margin: 0; font-size: .82rem; color: #C1D2CA; }
+.nasa-section { padding-top: 7rem; padding-bottom: 7rem; }
+.gallery-tools { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.search-label { color: var(--muted); font-size: .8rem; }
+.search-form { display: flex; gap: .55rem; width: min(520px, 100%); }
+.search-form input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: 3px; padding: .85rem 1rem; color: var(--text); background: var(--surface); font-size: .82rem; }
+.search-form .button { padding: .8rem 1rem; }
+.api-status { color: var(--muted); min-height: 1.4rem; letter-spacing: .04em; font-size: .65rem; }
+.nasa-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.1rem; }
+.nasa-result { background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
+.nasa-result img { display: block; width: 100%; height: 220px; object-fit: cover; background: var(--surface-2); }
+.nasa-result-content { padding: 1rem; }
+.nasa-result h3 { font-size: .95rem; line-height: 1.35; margin: 0 0 .6rem; }
+.nasa-result p { color: var(--muted); font-size: .78rem; margin: 0 0 .8rem; }
+.nasa-result a { color: var(--mint); font-size: .75rem; font-weight: 800; }
+.nasa-placeholder { padding-bottom: 1rem; }
+.nasa-placeholder p { padding: 0 1rem; }
+.placeholder-art { height: 220px; background: linear-gradient(135deg, var(--surface-2), var(--forest), var(--surface)); }
+.source-note { color: var(--muted); letter-spacing: .01em; font-size: .65rem; margin-top: 1.5rem; }
+.closing-cta { position: relative; isolation: isolate; overflow: hidden; background: var(--surface-2); padding: 6rem 1.5rem; text-align: center; }
+.closing-cta .eyebrow { justify-content: center; }
+.closing-cta h2 { margin-bottom: 1.8rem; font-size: clamp(3rem, 6vw, 5rem); }
+.closing-orb { position: absolute; z-index: -1; width: 420px; height: 420px; border-radius: 50%; border: 1px solid var(--line); left: 50%; top: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 45px rgba(117,183,165,.025), 0 0 0 95px rgba(117,183,165,.025); }
+.site-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 2rem 6.2%; border-top: 1px solid var(--line); color: var(--muted); font-size: .72rem; }
+.site-footer p { margin: 0; }
+.site-footer > a:last-child { color: var(--mint); }
+.story-dialog { width: min(560px, calc(100% - 2rem)); border: 1px solid var(--line); background: var(--surface); color: var(--text); padding: clamp(1.5rem, 5vw, 2.5rem); box-shadow: var(--shadow); }
+.story-dialog::backdrop { background: rgba(4,10,10,.76); backdrop-filter: blur(5px); }
+.dialog-close { float: right; background: none; border: 0; color: var(--muted); font-size: 2rem; cursor: pointer; line-height: 1; }
+.story-dialog h2 { font-size: 2rem; letter-spacing: -.05em; line-height: 1.1; margin: 0 0 1rem; }
+.story-dialog > p:not(.eyebrow) { color: var(--muted); }
+.dialog-fact { border-left: 2px solid var(--sand); padding: .8rem 1rem; margin: 1.2rem 0; background: var(--surface-2); font-size: .85rem; }
+html[data-theme="light"] .hero::before { background-image: linear-gradient(90deg, rgba(16,26,27,.86) 0%, rgba(16,26,27,.62) 43%, rgba(16,26,27,.12) 100%), linear-gradient(0deg, rgba(16,26,27,.68), transparent 45%), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2400&q=90'); }
+@media (max-width: 850px) {
+  .site-header { padding: 0 5%; gap: 1rem; }
+  .main-nav { gap: 1rem; }
+  .main-nav a { font-size: .72rem; }
+  .theme-toggle { padding: .55rem .65rem; }
+  #themeLabel { display: none; }
+  .hero { padding-left: 7%; padding-right: 7%; min-height: 690px; }
+  .intro-grid { gap: 5%; }
+  .mission-grid { grid-template-columns: 1fr 1fr; }
+  .mission-card:last-child { grid-column: 1 / -1; display: grid; grid-template-columns: .8fr 1fr; }
+  .mission-card:last-child .card-image { height: 100%; min-height: 280px; }
+  .why-inner { grid-template-columns: 1fr; gap: 1rem; padding-top: 5rem; padding-bottom: 5rem; }
+  .why-visual { min-height: 300px; }
+  .planet { width: 130px; height: 130px; }
+  .orbit { width: 300px; height: 115px; }
+  .orbit-two { width: 320px; height: 170px; }
+}
+@media (max-width: 600px) {
+  .site-header { height: 68px; }
+  .brand { font-size: .72rem; gap: .35rem; }
+  .main-nav { display: none; }
+  .theme-toggle { margin-left: auto; }
+  .hero { min-height: 670px; padding: 5rem 7% 6rem; }
+  .hero::before { background-position: 60% center; background-image: linear-gradient(90deg, rgba(16,26,27,.9), rgba(16,26,27,.56)), linear-gradient(0deg, rgba(16,26,27,.65), transparent 50%), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1600&q=85'); }
+  .hero h1 { font-size: clamp(3.1rem, 15vw, 5rem); }
+  .hero-copy { font-size: .92rem; }
+  .hero-note { margin-top: 3rem; }
+  .hero-caption { left: 7%; right: 7%; font-size: .5rem; gap: 1rem; }
+  .section-wrap { width: 86%; }
+  .intro { padding-top: 4rem; padding-bottom: 4rem; }
+  .section-kicker { font-size: .57rem; }
+  .intro-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .section-heading { display: block; }
+  .heading-side-note { margin-top: 1rem; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .mission-card:last-child { display: block; grid-column: auto; }
+  .mission-card:last-child .card-image { height: 220px; min-height: 0; }
+  .card-body > p:not(.card-tag) { min-height: auto; }
+  .why-inner { padding-top: 4rem; padding-bottom: 4rem; }
+  .why-visual { min-height: 260px; }
+  .gallery-tools { align-items: stretch; flex-direction: column; }
+  .search-form { width: 100%; }
+  .search-form .button { gap: .4rem; }
+  .nasa-gallery-grid { grid-template-columns: 1fr; }
+  .nasa-result img, .placeholder-art { height: 240px; }
+  .nasa-section { padding-top: 4rem; padding-bottom: 4rem; }
+  .site-footer { flex-direction: column; align-items: flex-start; padding: 2rem 7%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+
+/* Mini quiz */
+.quiz-section { padding-top: 1rem; padding-bottom: 7rem; }
+.quiz-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2rem; }
+.quiz-heading .eyebrow { margin-bottom: .8rem; }
+.quiz-heading h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 1.07; letter-spacing: -.06em; margin: 0; }
+.quiz-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 1rem; }
+.quiz-progress-panel { background: var(--forest); color: #F1F4EF; padding: clamp(1.5rem, 4vw, 2.5rem); position: relative; overflow: hidden; min-height: 320px; }
+.quiz-orbit-icon { display: grid; place-items: center; width: 62px; height: 62px; border: 1px solid rgba(117,183,165,.6); border-radius: 50%; color: var(--blue); font-size: 2rem; margin-bottom: 2rem; box-shadow: 0 0 0 12px rgba(91,155,213,.08), 0 0 0 24px rgba(91,155,213,.04); }
+.quiz-progress-panel .card-tag { color: var(--sand); }
+.quiz-progress-panel h3 { font-size: 1.65rem; letter-spacing: -.04em; margin: 0 0 .6rem; }
+.quiz-progress-panel > p:not(.card-tag):not(.quiz-progress-label):not(.quiz-score) { color: #C1D2CA; font-size: .85rem; max-width: 300px; }
+.quiz-progress-track { height: 4px; background: rgba(255,255,255,.18); margin-top: 2rem; }
+.quiz-progress-track span { display: block; height: 100%; width: 0; background: var(--blue); transition: width .25s; }
+.quiz-progress-label, .quiz-score { color: #D7E5DF; font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .06em; }
+.quiz-card { border: 1px solid var(--line); background: var(--surface); padding: clamp(1.5rem, 4vw, 2.5rem); min-height: 320px; }
+.quiz-question-number { color: var(--blue); font-family: 'DM Mono', monospace; font-size: .65rem; letter-spacing: .13em; margin: 0 0 1rem; }
+.quiz-card h3 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); letter-spacing: -.04em; line-height: 1.25; margin: 0 0 1.4rem; }
+.quiz-options { display: grid; gap: .65rem; }
+.quiz-option { width: 100%; text-align: left; padding: .9rem 1rem; background: var(--page); color: var(--text); border: 1px solid var(--line); cursor: pointer; font-size: .82rem; transition: border-color .18s, background .18s, transform .18s; }
+.quiz-option:hover:not(:disabled) { border-color: var(--blue); transform: translateX(3px); }
+.quiz-option:disabled { cursor: default; opacity: .96; }
+.quiz-option.is-correct { border-color: var(--mint); background: rgba(117,183,165,.16); }
+.quiz-option.is-wrong { border-color: var(--sand); background: rgba(212,155,98,.12); }
+.quiz-feedback { color: var(--muted); min-height: 2.5rem; font-size: .8rem; margin: 1rem 0 .6rem; }
+.quiz-feedback.is-correct { color: var(--mint); }
+.quiz-feedback.is-wrong { color: var(--sand); }
+.quiz-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 1.2rem; }
+.quiz-controls .button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.quiz-restart { background: none; border: 0; cursor: pointer; }
+html[data-theme="light"] .quiz-progress-panel { background: var(--forest); }
+html[data-theme="light"] .quiz-card { background: #FFFFFF; }
+
+/* Clean, high-contrast editorial styling based on the supplied interface inspiration. */
+:root {
+  --blue: #5B9BD5;
+  --page: #F3F4EE;
+  --surface: #FFFFFF;
+  --surface-2: #E5EEE8;
+  --text: #101A1B;
+  --muted: #536761;
+  --line: rgba(36,68,66,.2);
+  --header: rgba(243,244,238,.9);
+  --shadow: 0 20px 50px rgba(16,26,27,.10);
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  --page: #101A1B;
+  --surface: #172524;
+  --surface-2: #1D302E;
+  --text: #F1F4EF;
+  --muted: #B0C0B9;
+  --line: rgba(117,183,165,.22);
+  --header: rgba(16,26,27,.86);
+  --shadow: 0 20px 60px rgba(0,0,0,.22);
+  color-scheme: dark;
+}
+.site-header { height: 84px; }
+.brand { letter-spacing: .16em; }
+.hero h1 { letter-spacing: -.085em; }
+.button-primary { background: var(--blue); }
+.button-primary span { color: #101A1B; }
+.main-nav a { transition: color .2s; }
+.main-nav a:hover { color: var(--blue); }
+.story-link, .nasa-result a { color: var(--blue); }
+.story-link span { color: var(--sand); }
+.text-link { border-color: var(--blue); }
+.text-link span { color: var(--blue); }
+.theme-toggle span:first-child { color: var(--blue); }
+.point-number { color: var(--blue); }
+.card-tag { color: var(--sand); }
+@media (max-width: 850px) {
+  .quiz-layout { grid-template-columns: 1fr; }
+  .quiz-progress-panel { min-height: auto; }
+  .quiz-orbit-icon { margin-bottom: 1.3rem; }
+}
+@media (max-width: 600px) {
+  .site-header { height: 68px; }
+  .quiz-heading { display: block; }
+  .quiz-card, .quiz-progress-panel { padding: 1.4rem; }
+}
+
+
+
+/* Refinements: smoother type, responsive navigation, motion cues, and mission academy. */
+:root { --ease-out: cubic-bezier(.2,.7,.2,1); }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  line-height: 1.7;
+}
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+button, a, input { touch-action: manipulation; }
+.site-header { position: sticky; isolation: isolate; }
+.brand { transition: opacity .2s ease; }
+.brand:hover { opacity: .78; }
+.button, .theme-toggle, .story-link, .text-link, .quiz-option { transition-timing-function: var(--ease-out); }
+.button:active, .theme-toggle:active { transform: translateY(1px) scale(.99); }
+.mission-card { border-radius: 5px; }
+.mission-card, .nasa-result { border-radius: 5px; }
+.card-image { overflow: hidden; }
+.card-image::before { content: ""; position: absolute; inset: 0; background: inherit; background-size: cover; background-position: inherit; transition: transform .7s var(--ease-out); }
+.mission-card:hover .card-image::before { transform: scale(1.045); }
+.card-image::after { z-index: 1; }
+.card-topline { z-index: 2; }
+.story-dialog { border-radius: 6px; }
+.search-form input { transition: border-color .2s ease, box-shadow .2s ease; }
+.search-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(91,155,213,.15); outline: none; }
+.reading-progress { height: 3px; position: fixed; top: 0; left: 0; right: 0; z-index: 100; pointer-events: none; }
+.reading-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--mint), var(--blue), var(--sand)); transform-origin: left; }
+.menu-toggle { display: none; }
+.back-to-top { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 25; width: 44px; height: 44px; display: grid; place-items: center; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 50%; font-size: 1.25rem; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s ease, visibility .2s ease, transform .2s ease, background .2s ease; }
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: var(--surface-2); color: var(--blue); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.mission-card.reveal:nth-child(2) { transition-delay: .07s; }
+.mission-card.reveal:nth-child(3) { transition-delay: .14s; }
+.planet { animation: planet-drift 8s ease-in-out infinite; }
+.orbit { animation: orbit-drift 14s ease-in-out infinite alternate; }
+.orbit-two { animation-delay: -4s; }
+@keyframes planet-drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes orbit-drift { from { translate: -3px 0; } to { translate: 3px 2px; } }
+
+.quiz-section { padding-top: 2rem; }
+.level-track { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .7rem; margin: 0 0 1.15rem; }
+.level-step { display: flex; align-items: center; gap: .75rem; min-width: 0; border: 1px solid var(--line); padding: .85rem 1rem; background: var(--surface); color: var(--muted); transition: border-color .25s ease, background .25s ease, color .25s ease; }
+.level-step-number { flex: 0 0 34px; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--blue); font: 500 .7rem 'DM Mono', monospace; }
+.level-step-copy { min-width: 0; }
+.level-step-copy strong { display: block; color: var(--text); font-size: .78rem; line-height: 1.35; }
+.level-step-copy span { display: block; margin-top: .15rem; font: .56rem 'DM Mono', monospace; letter-spacing: .08em; text-transform: uppercase; }
+.level-step.is-active { border-color: var(--blue); background: color-mix(in srgb, var(--blue) 10%, var(--surface)); color: var(--text); box-shadow: inset 0 -2px 0 var(--blue); }
+.level-step.is-complete .level-step-number { background: var(--mint); border-color: var(--mint); color: #101A1B; }
+.level-step.is-locked .level-step-number { color: var(--muted); }
+.quiz-layout { align-items: stretch; }
+.quiz-progress-panel, .quiz-card { border-radius: 5px; }
+.quiz-progress-panel { display: flex; flex-direction: column; }
+.quiz-progress-panel > p:not(.card-tag):not(.quiz-progress-label):not(.quiz-score):not(.quiz-pass-note) { line-height: 1.7; }
+.quiz-pass-note { border-top: 1px solid rgba(255,255,255,.17); padding-top: .85rem; margin-top: auto; color: #C1D2CA; font: .59rem 'DM Mono', monospace; letter-spacing: .12em; }
+.quiz-pass-note strong { color: var(--sand); margin-left: .3rem; }
+.quiz-progress-track { overflow: hidden; border-radius: 20px; }
+.quiz-progress-track span { border-radius: inherit; background: linear-gradient(90deg, var(--mint), var(--blue)); }
+.quiz-card { min-width: 0; }
+.quiz-question-number { color: var(--blue); }
+.quiz-options { grid-template-columns: 1fr; }
+.quiz-option { display: flex; align-items: flex-start; gap: .7rem; min-height: 48px; border-radius: 4px; padding: .85rem .95rem; line-height: 1.55; }
+.quiz-option::before { content: attr(data-letter); flex: 0 0 23px; display: grid; place-items: center; width: 23px; height: 23px; border: 1px solid var(--line); border-radius: 50%; color: var(--blue); font: .62rem 'DM Mono', monospace; }
+.quiz-option:hover:not(:disabled) { background: var(--surface-2); }
+.quiz-option.is-correct::before { content: "✓"; border-color: var(--mint); color: var(--mint); }
+.quiz-option.is-wrong::before { content: "×"; border-color: var(--sand); color: var(--sand); }
+.quiz-feedback { line-height: 1.65; }
+.quiz-controls { gap: 1rem; }
+.quiz-restart { color: var(--muted); font-size: .77rem; }
+.quiz-restart:hover { color: var(--blue); }
+.quiz-result { animation: result-in .4s var(--ease-out) both; }
+.quiz-result[hidden], .fun-fact[hidden] { display: none !important; }
+.quiz-result h3 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); letter-spacing: -.055em; line-height: 1.1; margin: .6rem 0 1rem; }
+.quiz-result-message { color: var(--muted); max-width: 56ch; }
+.fun-fact { margin: 1.5rem 0; padding: 1.1rem 1.2rem; border: 1px solid rgba(91,155,213,.38); border-left: 3px solid var(--blue); background: color-mix(in srgb, var(--blue) 8%, var(--surface)); border-radius: 3px; }
+.fun-fact-label { font: .61rem 'DM Mono', monospace; letter-spacing: .11em; color: var(--blue); }
+.fun-fact-label span { color: var(--sand); padding-right: .35rem; }
+.fun-fact p { margin: .55rem 0 0; font-size: .88rem; line-height: 1.7; }
+.result-controls { margin-top: 1.6rem; }
+.quiz-footnote { color: var(--muted); font-size: .72rem; margin: 1rem 0 0; }
+@keyframes result-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) {
+  .site-header { gap: .9rem; }
+  .main-nav { gap: clamp(.6rem, 1.5vw, 1rem); }
+  .main-nav a { font-size: .68rem; }
+  .level-step { padding: .75rem; gap: .5rem; }
+  .level-step-number { width: 30px; height: 30px; flex-basis: 30px; }
+}
+@media (max-width: 650px) {
+  .site-header { height: 68px; padding: 0 5%; gap: .7rem; }
+  .brand { font-size: .67rem; letter-spacing: .1em; }
+  .brand-mark { font-size: 1.1rem; }
+  .menu-toggle { display: flex; width: 42px; height: 42px; flex: 0 0 42px; align-items: center; justify-content: center; flex-direction: column; gap: 6px; order: 3; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
+  .menu-toggle span { display: block; width: 15px; height: 1.5px; background: var(--text); transition: transform .2s ease; }
+  .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+  .theme-toggle { margin-left: auto; padding: .5rem .65rem; }
+  .main-nav { display: none; position: absolute; top: calc(100% + 1px); left: 0; right: 0; padding: .6rem 5% 1rem; flex-direction: column; gap: 0; background: var(--header); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+  .main-nav.is-open { display: flex; }
+  .main-nav a { padding: .9rem .2rem; font-size: .82rem; border-bottom: 1px solid var(--line); }
+  .main-nav a:last-child { border-bottom: 0; }
+  .hero { min-height: 620px; }
+  .hero h1 { letter-spacing: -.075em; }
+  .hero-caption { align-items: flex-start; }
+  .hero-caption span:last-child { text-align: right; }
+  .level-track { gap: .4rem; }
+  .level-step { display: block; padding: .7rem .55rem; text-align: center; }
+  .level-step-number { margin: 0 auto .45rem; }
+  .level-step-copy strong { font-size: .7rem; }
+  .level-step-copy span { font-size: .49rem; letter-spacing: .04em; }
+  .quiz-progress-panel { min-height: 0; }
+  .quiz-orbit-icon { width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 1rem; }
+  .quiz-progress-track { margin-top: 1rem; }
+  .quiz-pass-note { margin-top: .5rem; }
+  .quiz-card { min-height: 0; padding: 1.25rem; }
+  .quiz-controls { align-items: stretch; }
+  .quiz-controls .button { flex: 1 1 auto; }
+  .quiz-controls .text-link { text-align: left; }
+  .back-to-top { right: .85rem; bottom: .85rem; width: 40px; height: 40px; }
+}
+@media (max-width: 380px) {
+  .brand { letter-spacing: .04em; }
+  .theme-toggle { padding: .45rem .55rem; }
+  .level-step { padding: .65rem .35rem; }
+  .level-step-copy strong { font-size: .65rem; }
+  .level-step-copy span { font-size: .44rem; }
+  .hero-actions { gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  .planet, .orbit { animation: none; }
+}
+
+
+.main-nav a.is-current { color: var(--blue); }
+
+
+/* LN4-inspired visual pass: cobalt mission accents, orbital linework, and sharper editorial rhythm. */
+:root {
+  --blue: #5D8CFF;
+  --blue-bright: #78A4FF;
+  --mint: #83DCC6;
+  --sand: #FFC078;
+  --line: rgba(120,164,255,.24);
+  --ease-out: cubic-bezier(.18,.72,.22,1);
+}
+html[data-theme="light"] {
+  --page: #F4F6FB;
+  --surface: #FFFFFF;
+  --surface-2: #E9EEFA;
+  --text: #101A2D;
+  --muted: #52617A;
+  --line: rgba(42,77,151,.2);
+  --header: rgba(244,246,251,.9);
+  --shadow: 0 24px 60px rgba(20,38,80,.1);
+}
+html[data-theme="dark"] {
+  --page: #080D19;
+  --surface: #10192A;
+  --surface-2: #17243A;
+  --text: #F3F6FF;
+  --muted: #AEBBD2;
+  --line: rgba(120,164,255,.22);
+  --header: rgba(8,13,25,.88);
+  --shadow: 0 24px 70px rgba(0,0,0,.3);
+}
+body {
+  background-image: radial-gradient(ellipse at 12% 8%, rgba(69,104,202,.08), transparent 33%),
+                    radial-gradient(ellipse at 90% 46%, rgba(48,125,164,.06), transparent 34%);
+}
+.site-header {
+  border-bottom-color: var(--line);
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+}
+.brand { letter-spacing: .14em; }
+.brand-mark { color: var(--blue); text-shadow: 0 0 22px rgba(93,140,255,.5); }
+.brand-light { color: var(--mint); }
+.main-nav a { position: relative; transition: color .22s var(--ease-out); }
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: -.55rem;
+  height: 2px;
+  background: var(--blue);
+  transition: right .24s var(--ease-out);
+}
+.main-nav a:hover::after, .main-nav a.is-current::after { right: 0; }
+.theme-toggle { border-color: var(--line); transition: border-color .2s, background .2s, transform .2s; }
+.theme-toggle:hover { border-color: var(--blue); background: var(--surface-2); }
+.hero {
+  min-height: min(830px, calc(100svh - 78px));
+  padding-top: clamp(5rem, 10vw, 9rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background:
+    radial-gradient(ellipse at 82% 24%, rgba(93,140,255,.17), transparent 27%),
+    radial-gradient(ellipse at 76% 68%, rgba(131,220,198,.1), transparent 30%),
+    #080D19;
+}
+.hero::before {
+  background-image:
+    linear-gradient(90deg, rgba(8,13,25,.96) 0%, rgba(8,13,25,.76) 43%, rgba(8,13,25,.18) 100%),
+    linear-gradient(0deg, rgba(8,13,25,.78), transparent 46%),
+    url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2400&q=90');
+  background-position: center, center, center 48%;
+}
+.hero::after {
+  opacity: .72;
+  background-image:
+    linear-gradient(rgba(120,164,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,164,255,.055) 1px, transparent 1px),
+    radial-gradient(ellipse at 72% 32%, rgba(93,140,255,.22), transparent 34%);
+  background-size: 54px 54px, 54px 54px, auto;
+  mask-image: linear-gradient(90deg, transparent, #000 58%);
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1 {
+  max-width: 980px;
+  font-size: clamp(3.5rem, 9.1vw, 8.2rem);
+  letter-spacing: -.09em;
+  line-height: .94;
+}
+.gradient-text {
+  background-image: linear-gradient(105deg, #83DCC6 0%, #78A4FF 48%, #FFC078 100%);
+}
+.eyebrow { color: var(--blue-bright, #78A4FF); }
+.eyebrow-line { width: 38px; }
+.hero-note { color: #AFC0E0; }
+.status-dot { box-shadow: 0 0 0 4px rgba(131,220,198,.1), 0 0 14px var(--mint); }
+.hero-caption { color: #AEBBD2; }
+.button { border-radius: 4px; transition: transform .22s var(--ease-out), box-shadow .22s var(--ease-out), background .22s; }
+.button-primary {
+  color: #08101F;
+  background: linear-gradient(115deg, #83DCC6, #78A4FF 75%);
+  box-shadow: 0 8px 24px rgba(93,140,255,.18);
+}
+.button-primary span { color: #08101F; }
+.button-primary:hover { transform: translateY(-2px); box-shadow: 0 13px 32px rgba(93,140,255,.28); }
+.text-link { border-color: var(--blue); }
+.text-link span, .story-link span { color: var(--blue); }
+.section-wrap { width: min(1180px, 84%); }
+.intro { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.section-kicker, .card-topline, .hero-caption, .hero-note, .card-tag, .api-status, .source-note {
+  letter-spacing: .16em;
+}
+.section-heading h2, .intro h2, .why-copy h2, .quiz-heading h2, .closing-cta h2 {
+  letter-spacing: -.065em;
+}
+.mission-grid { gap: 1.1rem; }
+.mission-card {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  box-shadow: 0 12px 36px rgba(0,0,0,.06);
+  transition: transform .28s var(--ease-out), border-color .28s, box-shadow .28s;
+}
+.mission-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(120,164,255,.62);
+  box-shadow: var(--shadow);
+}
+.card-image { min-height: 235px; }
+.card-image::after { background: linear-gradient(180deg, rgba(8,13,25,.08), rgba(8,13,25,.46)); }
+.card-tag { color: var(--sand); }
+.card-body h3 { letter-spacing: -.035em; }
+.story-link { color: var(--blue); }
+.why-section {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(93,140,255,.12), transparent 34%),
+    linear-gradient(135deg, var(--surface), var(--page));
+}
+.why-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .22;
+  background-image: linear-gradient(rgba(120,164,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(120,164,255,.08) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(90deg, #000, transparent 72%);
+}
+.why-inner { position: relative; }
+.point-number { color: var(--blue); }
+.why-point { border-bottom-color: var(--line); }
+.quiz-section { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.level-step { border-radius: 6px; }
+.level-step.is-active { border-color: var(--blue); box-shadow: inset 0 -3px 0 var(--blue), 0 8px 22px rgba(93,140,255,.08); }
+.level-step-number { color: var(--blue); }
+.quiz-progress-panel {
+  border: 1px solid rgba(120,164,255,.2);
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(120,164,255,.22), transparent 43%),
+    linear-gradient(145deg, #172641, #0B1323);
+  border-radius: 7px;
+}
+.quiz-orbit-icon { color: var(--mint); text-shadow: 0 0 20px rgba(131,220,198,.4); }
+.quiz-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 7px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.07);
+}
+.quiz-option {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 90%, var(--blue));
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.quiz-option:hover:not(:disabled) { border-color: var(--blue); transform: translateX(3px); }
+.quiz-option.is-correct { border-color: var(--mint); }
+.quiz-option.is-wrong { border-color: var(--sand); }
+.fun-fact { border-radius: 5px; border-color: rgba(120,164,255,.42); }
+.nasa-section { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+.search-form input { border-radius: 4px; }
+.nasa-result {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 7px;
+  overflow: hidden;
+  transition: transform .25s var(--ease-out), border-color .25s, box-shadow .25s;
+}
+.nasa-result:hover { transform: translateY(-3px); border-color: rgba(120,164,255,.55); box-shadow: var(--shadow); }
+.api-status { color: var(--muted); }
+.closing-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 78% 18%, rgba(93,140,255,.2), transparent 28%),
+    linear-gradient(140deg, #101B32, #080D19 70%);
+}
+.closing-cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .28;
+  background-image: radial-gradient(circle, #AFC6FF 1px, transparent 1.5px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(90deg, transparent, #000);
+}
+.closing-cta .eyebrow { color: #AFC6FF; }
+.site-footer { border-top: 1px solid var(--line); }
+.back-to-top { border-color: var(--line); }
+.back-to-top:hover { color: var(--blue); border-color: var(--blue); }
+::selection { background: rgba(120,164,255,.32); color: var(--text); }
+:focus-visible { outline-color: var(--blue-bright, #78A4FF); }
+@media (max-width: 850px) {
+  .section-wrap { width: min(100% - 2.5rem, 720px); }
+  .hero { padding-left: 8%; padding-right: 8%; }
+}
+@media (max-width: 650px) {
+  .hero { min-height: min(720px, calc(100svh - 68px)); padding: 5.5rem 6% 6rem; }
+  .hero::before { background-position: center, center, 58% center; }
+  .hero::after { background-size: 42px 42px, 42px 42px, auto; }
+  .hero h1 { font-size: clamp(3.25rem, 14vw, 5.6rem); }
+  .section-wrap { width: 88%; }
+  .mission-grid { gap: 1rem; }
+  .card-image { min-height: 210px; }
+  .level-track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .quiz-option:hover:not(:disabled) { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+
+/* Focused polish: richer light-mode contrast, cursor-responsive highlights, and gentler section reveals. */
+html[data-theme="light"] {
+  --blue: #2853B8;
+  --blue-bright: #24499C;
+  --mint: #176B5B;
+  --sand: #985315;
+  --page: #F0F3FA;
+  --surface: #FFFFFF;
+  --surface-2: #E2E9F7;
+  --text: #111B30;
+  --muted: #465570;
+  --line: rgba(31, 55, 105, .22);
+  --header: rgba(240,243,250,.94);
+  --shadow: 0 22px 55px rgba(24,42,82,.14);
+}
+html[data-theme="light"] .main-nav,
+html[data-theme="light"] .section-kicker span,
+html[data-theme="light"] .api-status,
+html[data-theme="light"] .source-note { color: #465570; }
+html[data-theme="light"] .brand-light { color: #176B5B; }
+html[data-theme="light"] .text-link span,
+html[data-theme="light"] .story-link span,
+html[data-theme="light"] .story-link { color: #24499C; }
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .point-number,
+html[data-theme="light"] .level-step-number { color: #24499C; }
+html[data-theme="light"] .card-tag { color: #8A4A0B; }
+html[data-theme="light"] .hero-note,
+html[data-theme="light"] .hero-caption { color: #D7E2FA; }
+html[data-theme="light"] .quiz-option { color: var(--text); }
+html[data-theme="light"] .why-section { color: var(--text); }
+
+/* A soft light follows the pointer on interactive surfaces without moving their layout. */
+.mission-card, .nasa-result, .quiz-card, .quiz-progress-panel {
+  position: relative;
+  isolation: isolate;
+}
+.mission-card::before, .nasa-result::before, .quiz-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: inherit;
+  background: radial-gradient(280px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(120,164,255,.15), transparent 68%);
+  transition: opacity .35s ease;
+}
+.mission-card:hover::before, .nasa-result:hover::before, .quiz-card:hover::before { opacity: 1; }
+.mission-card, .nasa-result, .quiz-card {
+  transition: transform .45s var(--ease-out), border-color .35s var(--ease-out), box-shadow .45s var(--ease-out), background-color .35s ease;
+}
+.reveal { transform: translateY(26px); transition: opacity .95s var(--ease-out), transform .95s var(--ease-out); }
+.mission-card.reveal:nth-child(2) { transition-delay: .1s; }
+.mission-card.reveal:nth-child(3) { transition-delay: .2s; }
+html { scroll-behavior: smooth; }
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .mission-card::before, .nasa-result::before, .quiz-card::before { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
+
+
+
+/* Gradient typography: dark jewel tones on light surfaces, luminous tones on dark surfaces. */
+:root {
+  --type-gradient: linear-gradient(112deg, #78a4ff 0%, #a5e4d1 52%, #e6bd83 100%);
+  --type-gradient-light: linear-gradient(112deg, #183b83 0%, #236b67 52%, #80502a 100%);
+}
+.section-heading h2, .intro h2, .why-copy h2, .quiz-heading h2,
+.closing-cta h2, .question-box h2, .hero h1 {
+  color: transparent;
+  background-image: var(--type-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+html[data-theme="light"] .section-heading h2,
+html[data-theme="light"] .intro h2,
+html[data-theme="light"] .quiz-heading h2,
+html[data-theme="light"] .question-box h2,
+html[data-theme="light"] .missions .section-heading h2 {
+  background-image: var(--type-gradient-light);
+}
+/* These surfaces remain dark in either theme, so their text gradients stay luminous. */
+.closing-cta h2, .closing-cta .gradient-text,
+.quiz-progress-panel h2, .quiz-progress-panel h3,
+.quiz-progress-panel .quiz-progress-label,
+html[data-theme="light"] .closing-cta h2,
+html[data-theme="light"] .closing-cta .gradient-text {
+  background-image: linear-gradient(110deg, #f4f7ff 0%, #a9c5ff 48%, #a7e7d3 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+html[data-theme="light"] .why-section .why-copy h2 { background-image: var(--type-gradient-light); }
+
+html[data-theme="light"] .quiz-progress-panel,
+html[data-theme="light"] .quiz-progress-panel p,
+html[data-theme="light"] .quiz-progress-panel span,
+html[data-theme="light"] .quiz-progress-panel strong,
+html[data-theme="light"] .quiz-progress-panel small { color: #EAF0FF; }
+html[data-theme="light"] .quiz-progress-panel .quiz-progress-label,
+html[data-theme="light"] .quiz-progress-panel h2,
+html[data-theme="light"] .quiz-progress-panel h3 { background-image: linear-gradient(110deg, #F4F7FF, #A9C5FF 48%, #A7E7D3); color: transparent; background-clip: text; -webkit-background-clip: text; }
+
+.question-box { padding: clamp(2rem, 5vw, 4rem); margin: 0 auto clamp(4rem, 8vw, 7rem); border: 1px solid var(--line); border-radius: 12px; background: radial-gradient(ellipse at 90% 0%, rgba(91,155,213,.16), transparent 42%), var(--surface); box-shadow: var(--shadow); }
+.question-box-inner { max-width: 780px; margin: 0 auto; }
+.question-box h2 { margin: .2rem 0 .65rem; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.08; letter-spacing: -.055em; }
+.question-box p { color: var(--muted); }
+.question-form { display: flex; gap: .75rem; margin-top: 1.25rem; }
+.question-form input { min-width: 0; flex: 1; width: 100%; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 6px; background: var(--page); color: var(--text); }
+.question-form input::placeholder { color: var(--muted); opacity: 1; }
+.question-answer { margin-top: 1rem; padding: 1rem 1.1rem; border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; background: var(--surface-2); color: var(--text); }
+.question-answer:empty { display: none; }
+.question-answer a { color: var(--blue); text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 600px) { .question-form { flex-direction: column; } .question-form .button { width: 100%; } }
+
+
+
+/* Feedback form: matches the existing visual system and remains keyboard-friendly. */
+.feedback-section { width: min(100% - 3rem, 900px); margin: 0 auto clamp(4rem, 8vw, 7rem); }
+.feedback-panel { position: relative; overflow: hidden; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(135deg, var(--surface), var(--surface-2)); box-shadow: var(--shadow); }
+.feedback-panel::before { content: ""; position: absolute; width: 230px; height: 230px; right: -90px; top: -105px; border-radius: 50%; border: 1px solid var(--line); box-shadow: 0 0 0 24px color-mix(in srgb, var(--blue) 5%, transparent), 0 0 0 48px color-mix(in srgb, var(--mint) 4%, transparent); pointer-events: none; }
+.feedback-panel > * { position: relative; }
+.feedback-panel h2 { margin: .25rem 0 .65rem; }
+.feedback-panel > p:not(.eyebrow) { max-width: 62ch; color: var(--muted); }
+.feedback-form { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.feedback-field { display: grid; gap: .4rem; min-width: 0; }
+.feedback-field label { font-size: .88rem; font-weight: 700; }
+.feedback-field input, .feedback-field select, .feedback-field textarea { width: 100%; min-width: 0; padding: .85rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--page); color: var(--text); font: inherit; }
+.feedback-field textarea { min-height: 135px; resize: vertical; }
+.feedback-field input::placeholder, .feedback-field textarea::placeholder { color: var(--muted); opacity: .9; }
+.feedback-form .button { justify-self: start; }
+.feedback-note { margin: 0; font-size: .82rem; color: var(--muted); }
+#feedbackStatus { min-height: 1.5em; margin: 0; color: var(--muted); font-size: .9rem; }
+@media (max-width: 600px) { .feedback-section { width: 88%; } .feedback-form .button { width: 100%; justify-content: center; } }
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"><span id="readingProgressBar"></span></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Echoes of Space home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>ECHOES <span class="brand-light">OF SPACE</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="#missions">Explore</a>
+      <a href="#why-it-matters">Why it matters</a>
+      <a href="#mini-quiz">Mission academy</a>
+      <a href="#nasa-gallery">NASA gallery</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Open navigation menu">
+      <span></span><span></span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode">
+      <span id="themeIcon" aria-hidden="true">☼</span><span id="themeLabel">Light mode</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-stars" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A field guide to space hardware</p>
+        <h1 id="hero-title">Some machines<br>never <span class="gradient-text">came home.</span></h1>
+        <p class="hero-copy">Humanity has left explorers on distant worlds and sent machines into the dark. Their missions may be over—or still unfolding—but their discoveries keep reaching us.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#missions">Meet the explorers <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#why-it-matters">Why their stories matter <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-note"><span class="status-dot"></span> REAL MISSIONS · REAL NASA STORIES</div>
+      </div>
+      <div class="hero-caption"><span>01 / THE HUMAN FOOTPRINT</span><span>MOON · MARS · DEEP SPACE</span></div>
+    </section>
+
+    <section class="intro section-wrap">
+      <div class="section-kicker">THE STORY SO FAR <span>1960s — TODAY</span></div>
+      <div class="intro-grid">
+        <h2>Not every explorer<br>returns to Earth.</h2>
+        <div class="intro-copy">
+          <p>Since the 1960s, NASA missions have left instruments, landers, rovers, and spacecraft across the solar system. Some stopped working. Some completed their goals. Others continue to travel, quietly carrying our questions farther from home.</p>
+          <p>This is a story about what those machines did, what they taught us, and why their work still matters.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="missions section-wrap" id="missions">
+      <div class="section-heading">
+        <div><p class="eyebrow">CHOOSE YOUR DESTINATION</p><h2>Meet the explorers</h2></div>
+        <p class="heading-side-note">Every machine leaves behind<br>a different kind of discovery.</p>
+      </div>
+      <div class="mission-grid">
+        <article class="mission-card mission-moon">
+          <div class="card-image image-moon" role="img" aria-label="The Moon's cratered surface"></div>
+          
+          <div class="card-body">
+            <p class="card-tag">THE MOON</p>
+            <h3>Footprints &amp; instruments</h3>
+            <p>Hardware left by Apollo missions helped scientists study lunar soil, moonquakes, and the Moon's interior long after astronauts went home.</p>
+            <button class="story-link" data-story="moon" type="button">Open the story <span aria-hidden="true">↗</span></button>
+          </div>
+        </article>
+        <article class="mission-card mission-mars">
+          <div class="card-image image-mars" role="img" aria-label="A rover exploring the rusty surface of Mars"></div>
+          
+          <div class="card-body">
+            <p class="card-tag">MARS</p>
+            <h3>Robots that read rocks</h3>
+            <p>From Spirit and Opportunity to Curiosity and Perseverance, robotic geologists have searched for evidence of ancient water and habitable environments.</p>
+            <button class="story-link" data-story="mars" type="button">Open the story <span aria-hidden="true">↗</span></button>
+          </div>
+        </article>
+        <article class="mission-card mission-deep">
+          <div class="card-image image-deep" role="img" aria-label="A spacecraft travelling through deep space"></div>
+          
+          <div class="card-body">
+            <p class="card-tag">DEEP SPACE</p>
+            <h3>Messages from the edge</h3>
+            <p>Voyager's instruments have studied regions far beyond the planets, helping us understand the space between the stars.</p>
+            <button class="story-link" data-story="deep" type="button">Open the story <span aria-hidden="true">↗</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="why-section" id="why-it-matters">
+      <div class="why-inner section-wrap">
+        <div class="why-visual" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="planet"></div><div class="orbit-label label-one">OBSERVE</div><div class="orbit-label label-two">DISCOVER</div>
+        </div>
+        <div class="why-copy">
+          <p class="eyebrow">BEYOND THE HARDWARE</p>
+          <h2>Why it <span class="gradient-text">matters.</span></h2>
+          <p class="why-lead">A machine can outlive its mission. The knowledge it sends home can outlive the machine.</p>
+          <div class="why-points">
+            <div class="why-point"><span class="point-number">01</span><div><h3>We learn how worlds work</h3><p>Instruments measure dust, radiation, rocks, temperatures, and quakes—clues that reveal how planets and moons formed.</p></div></div>
+            <div class="why-point"><span class="point-number">02</span><div><h3>We search for life's ingredients</h3><p>Rovers and landers look for past water and environments that could have supported microbial life.</p></div></div>
+            <div class="why-point"><span class="point-number">03</span><div><h3>We make the next mission smarter</h3><p>Every success and failure teaches engineers how to build safer, tougher, more capable explorers.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="quiz-section section-wrap" id="mini-quiz">
+      <div class="quiz-heading">
+        <div>
+          <p class="eyebrow">TRAIN YOUR CURIOSITY</p>
+          <h2>Mission academy.</h2>
+        </div>
+        <p class="heading-side-note">Three ranks. Seven questions per rank.<br>Pass a level to unlock your next mission.</p>
+      </div>
+      <div class="level-track" id="levelTrack" aria-label="Mission academy progress"></div>
+      <div class="quiz-layout">
+        <aside class="quiz-progress-panel">
+          <span class="quiz-orbit-icon" id="quizOrbitIcon" aria-hidden="true">✦</span>
+          <p class="card-tag" id="quizFieldTest">RANK 01 / CADET</p>
+          <h3 id="quizLevelName">Cadet</h3>
+          <p id="quizLevelDescription">Start with the essentials: the worlds we explore and the machines we send.</p>
+          <div class="quiz-progress-track" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="quizProgressBar"><span id="quizProgress"></span></div>
+          <p class="quiz-progress-label" id="quizProgressLabel">Question 1 of 7</p>
+          <p class="quiz-score" id="quizScore" aria-live="polite">Score: 0 / 7</p>
+          <p class="quiz-pass-note">PASS MARK <strong>5 / 7</strong></p>
+        </aside>
+        <div class="quiz-card" id="quizCard">
+          <div id="quizQuestionArea">
+            <p class="quiz-question-number" id="quizQuestionNumber">CADET · QUESTION 01 / 07</p>
+            <h3 id="quizQuestion">What did NASA's Opportunity rover explore?</h3>
+            <div class="quiz-options" id="quizOptions"></div>
+            <p class="quiz-feedback" id="quizFeedback" aria-live="polite">Choose an answer to receive your mission briefing.</p>
+            <div class="quiz-controls">
+              <button class="button button-primary" id="quizNext" type="button" disabled>Next question <span aria-hidden="true">↗</span></button>
+              <button class="text-link quiz-restart" id="quizRestart" type="button">Reset level</button>
+            </div>
+          </div>
+          <div class="quiz-result" id="quizResult" hidden aria-live="polite">
+            <p class="quiz-question-number" id="quizResultEyebrow">LEVEL RESULT</p>
+            <h3 id="quizResultTitle">Level complete.</h3>
+            <p class="quiz-result-message" id="quizResultMessage"></p>
+            <div class="fun-fact" id="quizFunFact" hidden>
+              <span class="fun-fact-label"><span aria-hidden="true">✦</span> FUN FACT TRANSMISSION</span>
+              <p id="quizFunFactText"></p>
+            </div>
+            <div class="quiz-controls result-controls">
+              <button class="button button-primary" id="quizResultAction" type="button">Continue <span aria-hidden="true">↗</span></button>
+              <button class="text-link quiz-restart" id="quizRetryLevel" type="button" hidden>Retry this level</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="quiz-footnote">No time limit. Think like a scientist, learn from every answer, and keep going.</p>
+    </section>
+
+    <section class="nasa-section section-wrap" id="nasa-gallery">
+      <div class="section-heading">
+        <div><p class="eyebrow">STRAIGHT FROM THE ARCHIVE</p><h2>Explore NASA's universe</h2></div>
+        <p class="heading-side-note">Images and captions are requested<br>from NASA's public image library.</p>
+      </div>
+      <div class="gallery-tools">
+        <label class="search-label" for="nasaSearch">Search NASA images</label>
+        <form id="nasaSearchForm" class="search-form">
+          <input id="nasaSearch" name="q" type="search" value="Mars rover" placeholder="Try “Voyager” or “Apollo Moon”">
+          <button class="button button-primary" type="submit">Search <span aria-hidden="true">↗</span></button>
+        </form>
+      </div>
+      <p class="api-status" id="apiStatus" aria-live="polite">Loading NASA archive images…</p>
+      <div class="nasa-gallery-grid" id="nasaGalleryGrid">
+        <article class="nasa-result nasa-placeholder"><div class="placeholder-art"></div><p>NASA image results will appear here.</p></article>
+        <article class="nasa-result nasa-placeholder"><div class="placeholder-art"></div><p>Search the archive to explore more.</p></article>
+        <article class="nasa-result nasa-placeholder"><div class="placeholder-art"></div><p>Real mission images, from NASA.</p></article>
+      </div>
+      <p class="source-note">Image data: NASA Image and Video Library API. Mission summaries on this page are educational overviews; use the linked NASA source pages to dig deeper.</p>
+    </section>
+
+    <section class="question-box section-wrap" id="space-question" aria-labelledby="questionBoxTitle">
+      <div class="question-box-inner">
+        <p class="eyebrow">CURIOUS ABOUT THE COSMOS?</p>
+        <h2 id="questionBoxTitle">Ask a space question.</h2>
+        <p>Type a question about Apollo, Mars, Voyager, or the missions on this page. The box will point you to related information already here.</p>
+        <form class="question-form" id="spaceQuestionForm">
+          <label class="skip-link" for="spaceQuestionInput">Your space question</label>
+          <input id="spaceQuestionInput" name="question" type="search" placeholder="Why did Voyager leave the Solar System?" autocomplete="off" required>
+          <button class="button button-primary" type="submit">Find an answer <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="question-answer" id="spaceQuestionAnswer" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+
+
+    <section class="feedback-section" id="feedback" aria-labelledby="feedbackTitle">
+      <div class="feedback-panel">
+        <p class="eyebrow">HELP US IMPROVE THE MISSION</p>
+        <h2 id="feedbackTitle">Send us your feedback.</h2>
+        <p>Share what you enjoyed, what could be clearer, or what you would love to explore next. Your message will be prepared for email.</p>
+        <form class="feedback-form" id="feedbackForm">
+          <div class="feedback-field">
+            <label for="feedbackName">Your name <span aria-hidden="true">(optional)</span></label>
+            <input id="feedbackName" name="name" type="text" autocomplete="name" placeholder="How should we address you?">
+          </div>
+          <div class="feedback-field">
+            <label for="feedbackRating">How was your experience?</label>
+            <select id="feedbackRating" name="rating">
+              <option value="Not rated">Choose a rating (optional)</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Good">Good</option>
+              <option value="Okay">Okay</option>
+              <option value="Needs improvement">Needs improvement</option>
+            </select>
+          </div>
+          <div class="feedback-field">
+            <label for="feedbackMessage">Your feedback</label>
+            <textarea id="feedbackMessage" name="message" placeholder="Tell us what worked well or what we could improve…" required></textarea>
+          </div>
+          <button class="button button-primary" type="submit">Submit feedback <span aria-hidden="true">↗</span></button>
+          <p class="feedback-note">Your email app will open with the feedback addressed to intekhabalam2102@gmail.com. Press Send to deliver it.</p>
+          <p id="feedbackStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <div class="closing-orb" aria-hidden="true"></div>
+      <p class="eyebrow">THE UNIVERSE IS STILL FULL OF QUESTIONS</p>
+      <h2>Every signal tells<br><span class="gradient-text">a story.</span></h2>
+      <a class="button button-primary" href="#nasa-gallery">Find your next discovery <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">✦</span><span>ECHOES <span class="brand-light">OF SPACE</span></span></a>
+    <p>Made for curious minds. Inspired by real NASA missions.</p>
+    <a href="https://images.nasa.gov/" target="_blank" rel="noopener noreferrer">Visit NASA Image Library ↗</a>
+  </footer>
+
+  <dialog class="story-dialog" id="storyDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="Close story">×</button>
+    <p class="eyebrow" id="dialogEyebrow">MISSION FILE</p>
+    <h2 id="dialogTitle">A story from space</h2>
+    <p id="dialogText"></p>
+    <div class="dialog-fact" id="dialogFact"></div>
+    <a class="text-link" id="dialogSource" href="https://science.nasa.gov/" target="_blank" rel="noopener noreferrer">Read more at NASA ↗</a>
+  </dialog>
+  <a class="back-to-top" id="backToTop" href="#home" aria-label="Back to top">↑</a>
+<script>
+const root = document.documentElement;
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const themeLabel = document.getElementById("themeLabel");
+
+// Theme toggle. The chosen theme stays for the current page session.
+function setTheme(theme) {
+  root.dataset.theme = theme;
+  const light = theme === "light";
+  themeIcon.textContent = light ? "☾" : "☼";
+  themeLabel.textContent = light ? "Dark mode" : "Light mode";
+  themeToggle.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+}
+themeToggle.addEventListener("click", () => {
+  setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+});
+
+// Short, age-friendly mission stories with links to NASA's official mission pages.
+const stories = {
+  moon: {
+    eyebrow: "MISSION FILE / THE MOON",
+    title: "A science lab left behind",
+    text: "Apollo astronauts placed scientific instruments on the Moon. Some experiments sent information back to Earth after the astronauts had returned home. The Apollo Lunar Surface Experiments Package included tools that helped scientists study moonquakes and the Moon's environment.",
+    fact: "Why it matters: measuring moonquakes helped researchers learn about the Moon's internal structure.",
+    url: "https://science.nasa.gov/moon/"
+  },
+  mars: {
+    eyebrow: "MISSION FILE / MARS",
+    title: "Opportunity: built for 90 sols",
+    text: "NASA's Opportunity rover landed on Mars in January 2004. It was designed for a 90-Martian-day mission, but it explored for nearly 15 years. Its observations showed that liquid water had once altered rocks on Mars.",
+    fact: "Mission milestone: Opportunity travelled 28.06 miles (45.16 kilometres) before its mission ended in 2018.",
+    url: "https://science.nasa.gov/mission/mer-opportunity/"
+  },
+  deep: {
+    eyebrow: "MISSION FILE / DEEP SPACE",
+    title: "Voyager's long journey",
+    text: "Launched in 1977, Voyager 1 and Voyager 2 were built to explore the outer planets. They later travelled into interstellar space, carrying instruments that measure the environment beyond the Sun's protective bubble.",
+    fact: "Why it matters: Voyager measurements give scientists direct observations of a region no other operating spacecraft has explored in the same way.",
+    url: "https://science.nasa.gov/mission/voyager/"
+  }
+};
+
+const dialog = document.getElementById("storyDialog");
+const dialogEyebrow = document.getElementById("dialogEyebrow");
+const dialogTitle = document.getElementById("dialogTitle");
+const dialogText = document.getElementById("dialogText");
+const dialogFact = document.getElementById("dialogFact");
+const dialogSource = document.getElementById("dialogSource");
+
+document.querySelectorAll("[data-story]").forEach(button => {
+  button.addEventListener("click", () => {
+    const story = stories[button.dataset.story];
+    if (!story) return;
+    dialogEyebrow.textContent = story.eyebrow;
+    dialogTitle.textContent = story.title;
+    dialogText.textContent = story.text;
+    dialogFact.textContent = story.fact;
+    dialogSource.href = story.url;
+    if (typeof dialog.showModal === "function") dialog.showModal();
+    else window.alert(`${story.title}
+
+${story.text}
+
+${story.fact}`);
+  });
+});
+document.getElementById("dialogClose").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", event => {
+  if (event.target === dialog) dialog.close();
+});
+
+// NASA Image and Video Library API: no API key is required.
+// We request images at runtime so the gallery uses real NASA archive metadata.
+const gallery = document.getElementById("nasaGalleryGrid");
+const apiStatus = document.getElementById("apiStatus");
+const searchForm = document.getElementById("nasaSearchForm");
+const searchInput = document.getElementById("nasaSearch");
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function renderResults(items) {
+  gallery.replaceChildren();
+  const results = items
+    .filter(item => item.links && item.links.some(link => link.render === "image"))
+    .slice(0, 6);
+
+  if (!results.length) {
+    apiStatus.textContent = "No image results found. Try another search term.";
+    return;
+  }
+
+  results.forEach(item => {
+    const card = makeElement("article", "nasa-result");
+    const imageLink = item.links.find(link => link.render === "image");
+    const img = document.createElement("img");
+    img.src = imageLink.href;
+    img.alt = item.data?.[0]?.title || "NASA archive image";
+    img.loading = "lazy";
+    img.onerror = () => { img.style.display = "none"; };
+    card.appendChild(img);
+
+    const content = makeElement("div", "nasa-result-content");
+    const title = makeElement("h3", "", item.data?.[0]?.title || "Untitled NASA image");
+    const description = item.data?.[0]?.description || "Open the NASA archive record to learn more about this image.";
+    const excerpt = description.length > 210 ? description.slice(0, 207).trimEnd() + "…" : description;
+    const para = makeElement("p", "", excerpt);
+    const link = makeElement("a", "", "View NASA archive record ↗");
+    link.href = item.data?.[0]?.nasa_id
+      ? `https://images.nasa.gov/details/${encodeURIComponent(item.data[0].nasa_id)}`
+      : "https://images.nasa.gov/";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    content.append(title, para, link);
+    card.appendChild(content);
+    gallery.appendChild(card);
+  });
+  apiStatus.textContent = `Showing ${results.length} image result${results.length === 1 ? "" : "s"} from NASA's public image library.`;
+}
+
+async function searchNasa(query) {
+  apiStatus.textContent = "Searching NASA's archive…";
+  gallery.setAttribute("aria-busy", "true");
+  try {
+    const url = `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=12`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`NASA API responded with ${response.status}`);
+    const data = await response.json();
+    renderResults(data.collection?.items || []);
+  } catch (error) {
+    apiStatus.textContent = "NASA's image service could not be reached right now. Check your internet connection or try again later.";
+    console.error("NASA image search error:", error);
+  } finally {
+    gallery.removeAttribute("aria-busy");
+  }
+}
+searchForm.addEventListener("submit", event => {
+  event.preventDefault();
+  const query = searchInput.value.trim();
+  if (query) searchNasa(query);
+});
+searchNasa("Mars rover");
+
+
+// Mission Academy: three ranks, seven questions per rank, with a fun fact for each pass.
+const academyLevels = [
+  {
+    name: "Cadet",
+    icon: "✦",
+    description: "Start with the essentials: the worlds we explore and the machines we send.",
+    intro: "The basics are your launchpad. Show that you know the explorers and the worlds they visit.",
+    funFact: "Apollo astronauts left laser retroreflectors on the Moon. Scientists can bounce laser pulses off them to measure the Earth–Moon distance with remarkable precision.",
+    questions: [
+      { question: "What did NASA's Opportunity rover explore?", options: ["The surface and rocks of Mars", "The rings of Saturn", "The far side of the Sun", "The clouds of Venus"], answer: 0, explanation: "Correct! Opportunity studied Martian rocks and found evidence that liquid water had changed some of them long ago." },
+      { question: "Why did Apollo astronauts leave scientific instruments on the Moon?", options: ["To decorate the landing site", "To measure things such as moonquakes", "To grow plants", "To control Earth's tides"], answer: 1, explanation: "Apollo experiments returned scientific measurements after the astronauts had gone home, including information about moonquakes." },
+      { question: "When did NASA launch the Voyager spacecraft?", options: ["1961", "1977", "1999", "2012"], answer: 1, explanation: "Voyager 2 launched in August 1977 and Voyager 1 followed in September 1977." },
+      { question: "Why does Mars look reddish?", options: ["Its clouds are made of red paint", "Its soil contains rusty iron minerals", "It is closer to the Sun", "Its surface is always glowing"], answer: 1, explanation: "Iron minerals in Martian dust oxidized—much like rust—giving the planet its familiar red color." },
+      { question: "What did Apollo seismometers help scientists detect?", options: ["Moonquakes", "Ocean waves", "Solar eclipses", "Earth's wind"], answer: 0, explanation: "Seismometers recorded vibrations in the lunar ground, helping scientists study the Moon's interior." },
+      { question: "How do distant spacecraft usually send data back to Earth?", options: ["By ordinary mail", "Using radio signals", "Through laser pointers held by astronauts", "By dropping memory cards"], answer: 1, explanation: "Large antennas on Earth receive faint radio signals carrying spacecraft data across space." },
+      { question: "Where did NASA's Perseverance rover land in 2021?", options: ["The Moon", "Mars", "Jupiter", "An asteroid"], answer: 1, explanation: "Perseverance landed in Mars's Jezero Crater to study ancient environments and collect rock samples." }
+    ]
+  },
+  {
+    name: "Navigator",
+    icon: "⌁",
+    description: "Follow the clues: mission timelines, science instruments, and the space around our Sun.",
+    intro: "You're plotting a course now. Connect mission goals with the science each explorer made possible.",
+    funFact: "Opportunity was designed for a 90-Martian-day mission, called sols. It kept working for nearly 15 years on Mars—far beyond its original plan.",
+    questions: [
+      { question: "Opportunity was originally designed to operate for about how long?", options: ["90 Martian days", "2 Earth days", "50 Earth years", "One orbit of Jupiter"], answer: 0, explanation: "Opportunity's planned mission was about 90 sols, but the rover kept exploring for nearly 15 years." },
+      { question: "What important clue did Spirit and Opportunity find in Martian rocks?", options: ["Evidence that water once affected the rocks", "Proof of forests growing today", "A working city", "A large ocean still covering Mars"], answer: 0, explanation: "Minerals and rock textures pointed to past environments where liquid water had been present." },
+      { question: "What boundary did Voyager 1 cross in 2012, entering interstellar space?", options: ["The asteroid belt", "The heliopause", "Earth's atmosphere", "Saturn's rings"], answer: 1, explanation: "Voyager 1 crossed the heliopause, the outer boundary of the Sun's heliosphere, in 2012." },
+      { question: "What is the solar wind?", options: ["Wind moving across the Moon", "A stream of charged particles from the Sun", "Dust blown from Mars", "Light reflected by Earth"], answer: 1, explanation: "The solar wind is a flow of charged particles released by the Sun. It shapes the space environment around our solar system." },
+      { question: "Which Martian location has NASA's Curiosity rover been exploring since 2012?", options: ["Gale Crater", "Olympus Mons's summit only", "Valles Marineris's ocean", "The north pole of Jupiter"], answer: 0, explanation: "Curiosity landed in Gale Crater and has studied its rocks for clues about ancient habitable environments." },
+      { question: "What is one major job of NASA's Lunar Reconnaissance Orbiter (LRO)?", options: ["Map the Moon in detail", "Drive around Mars", "Collect Saturn's rings", "Carry astronauts to the Sun"], answer: 0, explanation: "LRO maps lunar terrain and studies the Moon's surface, including places that may be useful for future exploration." },
+      { question: "Why do engineers track a rover's route and wheel movement carefully?", options: ["To help it navigate safely across unfamiliar terrain", "To make Mars spin faster", "To steer Earth's weather", "To change the planet's color"], answer: 0, explanation: "Rover navigation data helps mission teams understand movement, avoid hazards, and choose safe science targets." }
+    ]
+  },
+  {
+    name: "Commander",
+    icon: "✧",
+    description: "Take command: uncover the engineering choices and discoveries behind ambitious missions.",
+    intro: "Final rank. Think about spacecraft design, planetary science, and the ways explorers work beyond Earth.",
+    funFact: "The Voyager Golden Records include greetings in 55 languages, sounds from Earth, music, and images chosen to represent life and our planet to a possible finder.",
+    questions: [
+      { question: "What is the purpose of the Golden Record carried by each Voyager spacecraft?", options: ["To store a backup of every NASA computer", "To share sounds and images representing Earth", "To guide the spacecraft to a planet", "To power the spacecraft"], answer: 1, explanation: "The Golden Record is a time-capsule-style message containing sounds, music, greetings, and images from Earth." },
+      { question: "What is a key goal of Perseverance's rock-sample work on Mars?", options: ["Cache samples for possible future return to Earth", "Build a human city", "Make Mars warmer", "Mine fuel for airplanes"], answer: 0, explanation: "Perseverance collects and seals selected rock and regolith samples so they could be returned to Earth by a future mission." },
+      { question: "What milestone did NASA's Ingenuity helicopter achieve on Mars in 2021?", options: ["First powered, controlled flight on another planet", "First human landing on Mars", "First sample return to Earth", "First orbit around Saturn"], answer: 0, explanation: "Ingenuity demonstrated the first powered, controlled flight on another planet, proving a new way to scout worlds." },
+      { question: "Why did Voyager use radioisotope thermoelectric generators (RTGs)?", options: ["To make electricity from heat released by radioactive decay", "To collect sunlight with huge solar sails", "To burn rocket fuel every day", "To store electricity from lightning"], answer: 0, explanation: "Voyager travels too far from the Sun for ordinary solar panels to be practical; its RTGs turn heat from radioactive decay into electricity." },
+      { question: "How did NASA end the Cassini mission in 2017?", options: ["It landed on Earth's Moon", "It deliberately entered Saturn's atmosphere", "It flew into the Sun", "It returned to Earth"], answer: 1, explanation: "Cassini made a planned final plunge into Saturn to help protect potentially habitable moons from accidental contamination." },
+      { question: "How has the Mars Reconnaissance Orbiter supported Mars exploration?", options: ["By taking detailed images and relaying data", "By carrying every rover on its surface", "By changing Mars's orbit", "By collecting Saturn's rings"], answer: 0, explanation: "Its high-resolution observations help scientists study the surface and choose landing sites, while its communications relay helps surface missions send data home." },
+      { question: "Why do spacecraft engineers sometimes build in redundant systems?", options: ["A backup can help a spacecraft continue if one component fails", "To make spacecraft heavier for fun", "To prevent radio signals reaching Earth", "To avoid testing the spacecraft"], answer: 0, explanation: "Spacecraft can be difficult or impossible to repair, so backup components and alternate operating modes can protect a mission." }
+    ]
+  }
+];
+
+const quizQuestion = document.getElementById("quizQuestion");
+const quizQuestionNumber = document.getElementById("quizQuestionNumber");
+const quizOptions = document.getElementById("quizOptions");
+const quizFeedback = document.getElementById("quizFeedback");
+const quizNext = document.getElementById("quizNext");
+const quizRestart = document.getElementById("quizRestart");
+const quizProgress = document.getElementById("quizProgress");
+const quizProgressBar = document.getElementById("quizProgressBar");
+const quizProgressLabel = document.getElementById("quizProgressLabel");
+const quizScore = document.getElementById("quizScore");
+const quizFieldTest = document.getElementById("quizFieldTest");
+const quizLevelName = document.getElementById("quizLevelName");
+const quizLevelDescription = document.getElementById("quizLevelDescription");
+const quizOrbitIcon = document.getElementById("quizOrbitIcon");
+const levelTrack = document.getElementById("levelTrack");
+const quizQuestionArea = document.getElementById("quizQuestionArea");
+const quizResult = document.getElementById("quizResult");
+const quizResultEyebrow = document.getElementById("quizResultEyebrow");
+const quizResultTitle = document.getElementById("quizResultTitle");
+const quizResultMessage = document.getElementById("quizResultMessage");
+const quizFunFact = document.getElementById("quizFunFact");
+const quizFunFactText = document.getElementById("quizFunFactText");
+const quizResultAction = document.getElementById("quizResultAction");
+const quizRetryLevel = document.getElementById("quizRetryLevel");
+
+const PASS_MARK = 5;
+let currentLevelIndex = 0;
+let questionIndex = 0;
+let quizPoints = 0;
+let quizAnswered = false;
+let unlockedThrough = 0;
+const completedLevels = new Set();
+
+function currentLevel() { return academyLevels[currentLevelIndex]; }
+function currentQuestion() { return currentLevel().questions[questionIndex]; }
+
+function renderLevelTrack() {
+  levelTrack.replaceChildren();
+  academyLevels.forEach((level, index) => {
+    const step = document.createElement("div");
+    step.className = "level-step";
+    if (index === currentLevelIndex) step.classList.add("is-active");
+    if (completedLevels.has(index)) step.classList.add("is-complete");
+    if (index > unlockedThrough) step.classList.add("is-locked");
+    const number = document.createElement("span");
+    number.className = "level-step-number";
+    number.textContent = completedLevels.has(index) ? "✓" : index > unlockedThrough ? "•" : `0${index + 1}`;
+    const copy = document.createElement("span");
+    copy.className = "level-step-copy";
+    const title = document.createElement("strong");
+    title.textContent = level.name;
+    const status = document.createElement("span");
+    status.textContent = completedLevels.has(index) ? "Cleared" : index === currentLevelIndex ? "In progress" : index > unlockedThrough ? "Locked" : "Unlocked";
+    copy.append(title, status);
+    step.append(number, copy);
+    levelTrack.appendChild(step);
+  });
+}
+
+function updateProgress() {
+  const total = currentLevel().questions.length;
+  const answeredCount = questionIndex + (quizAnswered ? 1 : 0);
+  quizProgress.style.width = `${(answeredCount / total) * 100}%`;
+  quizProgressBar.setAttribute("aria-valuenow", String(answeredCount));
+  quizProgressLabel.textContent = `Question ${questionIndex + 1} of ${total}`;
+  quizScore.textContent = `Score: ${quizPoints} / ${total}`;
+}
+
+function renderQuestion() {
+  const level = currentLevel();
+  const item = currentQuestion();
+  quizAnswered = false;
+  quizFieldTest.textContent = `RANK 0${currentLevelIndex + 1} / ${level.name.toUpperCase()}`;
+  quizLevelName.textContent = level.name;
+  quizLevelDescription.textContent = level.description;
+  quizOrbitIcon.textContent = level.icon;
+  quizQuestion.textContent = item.question;
+  quizQuestionNumber.textContent = `${level.name.toUpperCase()} · QUESTION ${String(questionIndex + 1).padStart(2, "0")} / 07`;
+  quizFeedback.textContent = "Choose an answer to receive your mission briefing.";
+  quizFeedback.className = "quiz-feedback";
+  quizNext.disabled = true;
+  quizNext.innerHTML = questionIndex === level.questions.length - 1
+    ? 'Complete level <span aria-hidden="true">↗</span>'
+    : 'Next question <span aria-hidden="true">↗</span>';
+  quizOptions.replaceChildren();
+  item.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "quiz-option";
+    button.dataset.letter = String.fromCharCode(65 + index);
+    button.textContent = option;
+    button.addEventListener("click", () => chooseQuizAnswer(index));
+    quizOptions.appendChild(button);
+  });
+  updateProgress();
+  renderLevelTrack();
+}
+
+function chooseQuizAnswer(selectedIndex) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const item = currentQuestion();
+  const buttons = [...quizOptions.querySelectorAll(".quiz-option")];
+  buttons.forEach((button, index) => {
+    button.disabled = true;
+    if (index === item.answer) button.classList.add("is-correct");
+    if (index === selectedIndex && selectedIndex !== item.answer) button.classList.add("is-wrong");
+  });
+  const correct = selectedIndex === item.answer;
+  if (correct) quizPoints += 1;
+  quizFeedback.textContent = (correct ? "Correct! " : "Mission clue: ") + item.explanation;
+  quizFeedback.classList.add(correct ? "is-correct" : "is-wrong");
+  quizNext.disabled = false;
+  updateProgress();
+}
+
+function showLevelResult() {
+  const level = currentLevel();
+  const passed = quizPoints >= PASS_MARK;
+  quizQuestionArea.hidden = true;
+  quizResult.hidden = false;
+  quizResultEyebrow.textContent = `${level.name.toUpperCase()} · FINAL REPORT`;
+  quizResultTitle.textContent = passed
+    ? (currentLevelIndex === academyLevels.length - 1 ? "Commander status: earned." : `${level.name} level cleared!`)
+    : "Not quite mission-ready yet.";
+  quizResultMessage.textContent = passed
+    ? `You scored ${quizPoints} out of 7 and passed the ${level.name} level. ${currentLevelIndex === academyLevels.length - 1 ? "You've completed all three ranks in Mission Academy." : "Your next rank is now unlocked. Read your fun fact before continuing."}`
+    : `You scored ${quizPoints} out of 7. You need at least ${PASS_MARK} correct answers to clear ${level.name}. Review the clues and give this level another try.`;
+  quizFunFact.hidden = !passed;
+  if (passed) {
+    quizFunFactText.textContent = level.funFact;
+    completedLevels.add(currentLevelIndex);
+    unlockedThrough = Math.max(unlockedThrough, Math.min(currentLevelIndex + 1, academyLevels.length - 1));
+  }
+  quizResultAction.hidden = false;
+  quizRetryLevel.hidden = passed;
+  if (!passed) {
+    quizResultAction.innerHTML = 'Retry this level <span aria-hidden="true">↻</span>';
+    quizRetryLevel.hidden = true;
+  } else if (currentLevelIndex < academyLevels.length - 1) {
+    quizResultAction.innerHTML = `Unlock ${academyLevels[currentLevelIndex + 1].name} <span aria-hidden="true">↗</span>`;
+  } else {
+    quizResultAction.innerHTML = 'Replay the academy <span aria-hidden="true">↻</span>';
+  }
+  quizProgress.style.width = "100%";
+  quizProgressBar.setAttribute("aria-valuenow", "7");
+  quizProgressLabel.textContent = "Level complete";
+  quizScore.textContent = `Final score: ${quizPoints} / 7`;
+  renderLevelTrack();
+}
+
+quizNext.addEventListener("click", () => {
+  if (!quizAnswered) return;
+  if (questionIndex < currentLevel().questions.length - 1) {
+    questionIndex += 1;
+    renderQuestion();
+  } else {
+    showLevelResult();
+  }
+});
+
+function resetCurrentLevel() {
+  questionIndex = 0;
+  quizPoints = 0;
+  quizAnswered = false;
+  quizQuestionArea.hidden = false;
+  quizResult.hidden = true;
+  renderQuestion();
+}
+
+function resetAcademy() {
+  currentLevelIndex = 0;
+  questionIndex = 0;
+  quizPoints = 0;
+  quizAnswered = false;
+  unlockedThrough = 0;
+  completedLevels.clear();
+  quizQuestionArea.hidden = false;
+  quizResult.hidden = true;
+  renderQuestion();
+}
+
+quizRestart.addEventListener("click", resetCurrentLevel);
+quizRetryLevel.addEventListener("click", resetCurrentLevel);
+quizResultAction.addEventListener("click", () => {
+  if (quizPoints < PASS_MARK) {
+    resetCurrentLevel();
+  } else if (currentLevelIndex < academyLevels.length - 1) {
+    currentLevelIndex += 1;
+    resetCurrentLevel();
+  } else {
+    resetAcademy();
+  }
+});
+
+renderQuestion();
+
+// Mobile navigation: close after choosing a section and keep ARIA state in sync.
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+function closeMobileMenu() {
+  mainNav.classList.remove("is-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+}
+menuToggle.addEventListener("click", () => {
+  const open = menuToggle.getAttribute("aria-expanded") !== "true";
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+  mainNav.classList.toggle("is-open", open);
+});
+mainNav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+window.addEventListener("resize", () => { if (window.innerWidth > 650) closeMobileMenu(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeMobileMenu(); });
+
+// Reading progress and back-to-top affordance.
+const readingProgressBar = document.getElementById("readingProgressBar");
+const backToTop = document.getElementById("backToTop");
+let scrollTicking = false;
+function updateScrollUI() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+  readingProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+  backToTop.classList.toggle("is-visible", window.scrollY > 550);
+  scrollTicking = false;
+}
+window.addEventListener("scroll", () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(updateScrollUI);
+    scrollTicking = true;
+  }
+}, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
+
+// Reveal content gently as it enters the viewport; fall back to visible content if unsupported.
+const revealTargets = document.querySelectorAll(".intro, .mission-card, .why-inner, .quiz-heading, .level-track, .quiz-layout, .nasa-section, .closing-cta");
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  revealTargets.forEach(target => target.classList.add("reveal"));
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+  revealTargets.forEach(target => revealObserver.observe(target));
+} else {
+  revealTargets.forEach(target => target.classList.add("is-visible"));
+}
+
+// Highlight the current section in the desktop navigation.
+if ("IntersectionObserver" in window) {
+  const navLinks = [...mainNav.querySelectorAll("a")];
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.toggle("is-current", link.hash === `#${entry.target.id}`));
+      }
+    });
+  }, { rootMargin: "-25% 0px -60% 0px" });
+  navLinks.forEach(link => {
+    const section = document.querySelector(link.hash);
+    if (section) sectionObserver.observe(section);
+  });
+}
+
+
+
+
+// Cursor-following card highlights: decorative only, with no changes to existing interactions.
+(() => {
+  if (window.matchMedia('(hover: none), (prefers-reduced-motion: reduce)').matches) return;
+  const surfaces = document.querySelectorAll('.mission-card, .nasa-result, .quiz-card');
+  surfaces.forEach(surface => {
+    surface.addEventListener('pointermove', event => {
+      const rect = surface.getBoundingClientRect();
+      surface.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+      surface.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+    }, { passive: true });
+    surface.addEventListener('pointerleave', () => {
+      surface.style.removeProperty('--pointer-x');
+      surface.style.removeProperty('--pointer-y');
+    }, { passive: true });
+  });
+})();
+
+
+
+// Lightweight question box: guides visitors to relevant existing page sections without a backend.
+const spaceQuestionForm = document.getElementById("spaceQuestionForm");
+const spaceQuestionInput = document.getElementById("spaceQuestionInput");
+const spaceQuestionAnswer = document.getElementById("spaceQuestionAnswer");
+if (spaceQuestionForm && spaceQuestionInput && spaceQuestionAnswer) {
+  const questionTopics = [
+    { keys: ["voyager", "interstellar", "golden record", "deep space"], title: "Voyager and deep space", target: "#missions", detail: "Explore the Voyager mission story in the mission cards. Voyager 1 entered interstellar space in 2012, and both spacecraft carry a Golden Record." },
+    { keys: ["apollo", "moon", "lunar", "astronaut", "moonquake"], title: "Apollo and the Moon", target: "#missions", detail: "The mission stories cover Apollo equipment and lunar science. Apollo astronauts left scientific instruments on the Moon, and the rovers helped crews explore farther from their landing sites." },
+    { keys: ["mars", "opportunity", "rover", "water", "red planet"], title: "Mars and Opportunity", target: "#missions", detail: "The Mars mission story explains how Opportunity explored Martian rocks and found evidence of ancient water. You can also search the NASA gallery for Mars rover images." },
+    { keys: ["quiz", "test", "cadet", "navigator", "commander", "learn"], title: "Mission Academy", target: "#mini-quiz", detail: "Try the Mission Academy for three levels of space-science questions, feedback, and fun facts." },
+    { keys: ["image", "photo", "picture", "gallery", "nasa archive"], title: "NASA image archive", target: "#nasa-gallery", detail: "Search NASA's public image library for mission photos and archive records." }
+  ];
+  spaceQuestionForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const question = spaceQuestionInput.value.trim().toLowerCase();
+    if (!question) return;
+    const match = questionTopics.find(topic => topic.keys.some(key => question.includes(key)));
+    spaceQuestionAnswer.replaceChildren();
+    const heading = document.createElement("strong");
+    const copy = document.createElement("p");
+    const link = document.createElement("a");
+    if (match) {
+      heading.textContent = match.title;
+      copy.textContent = match.detail;
+      link.href = match.target;
+      link.textContent = "Explore this part of the page →";
+    } else {
+      heading.textContent = "Let's explore that together";
+      copy.textContent = "I couldn't match that question to a specific topic yet. Try asking about Apollo, the Moon, Mars, Opportunity, Voyager, the quiz, or NASA images.";
+      link.href = "#missions";
+      link.textContent = "Browse the mission stories →";
+    }
+    spaceQuestionAnswer.append(heading, copy, link);
+  });
+}
+
+
+
+// Feedback uses a mailto draft; the visitor reviews and sends it from their email app.
+const feedbackForm = document.getElementById("feedbackForm");
+if (feedbackForm) {
+  feedbackForm.addEventListener("submit", event => {
+    event.preventDefault();
+    const name = document.getElementById("feedbackName").value.trim() || "Not provided";
+    const rating = document.getElementById("feedbackRating").value;
+    const message = document.getElementById("feedbackMessage").value.trim();
+    const status = document.getElementById("feedbackStatus");
+    if (!message) {
+      status.textContent = "Please add your feedback before continuing.";
+      document.getElementById("feedbackMessage").focus();
+      return;
+    }
+    const subject = encodeURIComponent("Echoes of Space website feedback");
+    const body = encodeURIComponent(`Feedback for Echoes of Space\n\nName: ${name}\nExperience: ${rating}\n\nFeedback:\n${message}`);
+    status.textContent = "Your email app should open with the feedback ready to review. Please press Send in that app.";
+    window.location.href = `mailto:intekhabalam2102@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
+
+</script>
+</body>
+</html>
